@@ -7,13 +7,14 @@ class Card(object):
 
     def __init__(self, rank:str, suit:str, isFaceUp = True):
         """creates a card of a given rank and suit"""
-        self.rank = rank
-        self.suit = suit
-        self.card = (rank, suit)
-        self.isFaceUp = isFaceUp
+        self.rank = rank #defines rank of card
+        self.suit = suit #defines suit of card
+        self.card = (rank, suit) #creates card as a tuple
+        self.isFaceUp = isFaceUp #determines if card can be shown
 
 
     def __str__(self):
+        """returns the card if it is face up"""
         if self.isFaceUp:
             output = self.rank + "-" + self.suit
             return output
@@ -21,6 +22,7 @@ class Card(object):
             return "XX"
 
     def flipCard(self):
+        """changes state of isFaceUp so that card is printed correctly"""
         if self.isFaceUp:
             self.isFaceUp = False
         else:
