@@ -28,7 +28,57 @@ class Card(object):
         else:
             self.isFaceUp = True
 
-c = Card(random.choice(Card.RANKS), random.choice(Card.SUITS), False)
-print(c)
-c.flipCard()
-print(c)
+class Hand(object):
+    """Hand of cards"""
+    def __init__(self):
+        self.cards = [] #list containing card objects
+
+    def __str__(self):
+        if len(self.cards) == 0:
+            return "<EMPTY>"
+        output = ""
+        for card in self.cards:
+            output += "(" + card.__str__() + ")" + " "
+        return output
+
+    def addCard(self, card:Card):
+        """Adds a card object to the hand"""
+        self.cards.append(card)
+
+    def giveCard(self, card:Card, otherHand):
+        """remove a card from this deck to add
+        to the otherHand"""
+        self.cards.remove(card)
+        otherHand.addCard(card)
+
+    def clearCard(self):
+        """remove all cards from the hand"""
+        self.cards = []
+
+    def getCard(self,rank, suit):
+        for card in self.cards:
+            if card.suit == suit and card.rank == rank:
+                return card
+        print("Card is not in hand")
+        return None
+
+h = Hand()
+
+h.addCard(Card("9", "S"))
+h.addCard(Card("J", "C", False))
+h.clearCard()
+print(h)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
